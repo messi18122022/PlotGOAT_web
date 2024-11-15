@@ -44,23 +44,23 @@
             background-color: #4a7ed0;
         }
 
-        #dateimanager-container {
+        .toggle-container {
             text-align: left;
             margin-top: 20px;
         }
 
-        #dateimanager {
+        .toggle-content {
             margin-top: 10px;
             display: none;
         }
 
-        .dateimanager-header {
+        .toggle-header {
             cursor: pointer;
             display: flex;
             align-items: center;
         }
 
-        .dateimanager-header span {
+        .toggle-header span {
             margin-left: 10px;
         }
 
@@ -75,34 +75,62 @@
 </head>
 <body>
     <header>
-        Dateimanager
+        PloTex
     </header>
-    <div id="dateimanager-container">
-        <div class="dateimanager-header" onclick="toggleDateimanager()">
-            <div class="arrow" id="arrow">▶</div>
-            <span>Dateimanager</span>
+    <div id="dateimanager-container" class="toggle-container">
+        <div class="toggle-header" onclick="toggleContent('dateimanager')">
+            <div class="arrow" id="arrow-dateimanager">▶</div>
+            <span>File Manager</span>
         </div>
-        <div id="dateimanager">
-            <button onclick="dateimanagerFunktion()">Datei-Button</button>
+        <div id="dateimanager" class="toggle-content">
+            <button onclick="dateimanagerFunktion()">File-Button</button>
+        </div>
+    </div>
+
+    <div id="datamanager-container" class="toggle-container">
+        <div class="toggle-header" onclick="toggleContent('datamanager')">
+            <div class="arrow" id="arrow-datamanager">▶</div>
+            <span>Data Manager</span>
+        </div>
+        <div id="datamanager" class="toggle-content">
+            <button onclick="datamanagerFunktion()">Data-Button</button>
+        </div>
+    </div>
+
+    <div id="plotmanager-container" class="toggle-container">
+        <div class="toggle-header" onclick="toggleContent('plotmanager')">
+            <div class="arrow" id="arrow-plotmanager">▶</div>
+            <span>Plot Manager</span>
+        </div>
+        <div id="plotmanager" class="toggle-content">
+            <button onclick="plotmanagerFunktion()">Plot-Button</button>
         </div>
     </div>
     
     <script>
         // JavaScript - Interaktivität hinzufügen
-        function toggleDateimanager() {
-            const dateimanager = document.getElementById("dateimanager");
-            const arrow = document.getElementById("arrow");
-            if (dateimanager.style.display === "none") {
-                dateimanager.style.display = "block";
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            const arrow = document.getElementById("arrow-" + id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
                 arrow.classList.add("open");
             } else {
-                dateimanager.style.display = "none";
+                content.style.display = "none";
                 arrow.classList.remove("open");
             }
         }
 
         function dateimanagerFunktion() {
             alert("Datei-Button wurde geklickt, macht aber noch nichts Spezielles.");
+        }
+
+        function datamanagerFunktion() {
+            alert("Daten-Button wurde geklickt, macht aber noch nichts Spezielles.");
+        }
+
+        function plotmanagerFunktion() {
+            alert("Plot-Button wurde geklickt, macht aber noch nichts Spezielles.");
         }
     </script>
 </body>
