@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dateimanager Webseite</title>
+    <title>PloTeX</title>
     <style>
         /* CSS - Stilregeln */
         body {
@@ -51,7 +51,7 @@
 
         .toggle-content {
             margin-top: 10px;
-            display: none;
+            display: block;
         }
 
         .toggle-header {
@@ -71,25 +71,56 @@
         .arrow.open {
             transform: rotate(90deg);
         }
+
+        #file-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+            border: 1px solid #555;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+
+        .file-item button {
+            font-size: 1.2em;
+            padding: 5px;
+            background: none;
+            color: #ff4d4d;
+            border: none;
+            cursor: pointer;
+        }
+
+        .file-item button:hover {
+            color: #e04444;
+        }
     </style>
 </head>
 <body>
     <header>
-        PloTex
+        PloTeX
     </header>
     <div id="dateimanager-container" class="toggle-container">
         <div class="toggle-header" onclick="toggleContent('dateimanager')">
-            <div class="arrow" id="arrow-dateimanager">▶</div>
+            <div class="arrow open" id="arrow-dateimanager">▶</div>
             <span>File Manager</span>
         </div>
         <div id="dateimanager" class="toggle-content">
-            <button onclick="dateimanagerFunktion()">File-Button</button>
+            <input type="file" id="file-input" multiple accept=".csv,.txt,.xlsx" onchange="handleFileUpload(event)">
+            <div id="file-list"></div>
         </div>
     </div>
 
     <div id="datamanager-container" class="toggle-container">
         <div class="toggle-header" onclick="toggleContent('datamanager')">
-            <div class="arrow" id="arrow-datamanager">▶</div>
+            <div class="arrow open" id="arrow-datamanager">▶</div>
             <span>Data Manager</span>
         </div>
         <div id="datamanager" class="toggle-content">
@@ -99,11 +130,21 @@
 
     <div id="plotmanager-container" class="toggle-container">
         <div class="toggle-header" onclick="toggleContent('plotmanager')">
-            <div class="arrow" id="arrow-plotmanager">▶</div>
+            <div class="arrow open" id="arrow-plotmanager">▶</div>
             <span>Plot Manager</span>
         </div>
         <div id="plotmanager" class="toggle-content">
             <button onclick="plotmanagerFunktion()">Plot-Button</button>
+        </div>
+    </div>
+
+    <div id="exportmanager-container" class="toggle-container">
+        <div class="toggle-header" onclick="toggleContent('exportmanager')">
+            <div class="arrow open" id="arrow-exportmanager">▶</div>
+            <span>Export Manager</span>
+        </div>
+        <div id="exportmanager" class="toggle-content">
+            <button onclick="exportmanagerFunktion()">Export-Button</button>
         </div>
     </div>
     
@@ -121,8 +162,23 @@
             }
         }
 
-        function dateimanagerFunktion() {
-            alert("Datei-Button wurde geklickt, macht aber noch nichts Spezielles.");
+        function handleFileUpload(event) {
+            const fileList = document.getElementById("file-list");
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const fileItem = document.createElement("div");
+                fileItem.className = "file-item";
+                fileItem.innerHTML = `
+                    <span>${files[i].name}</span>
+                    <button onclick="deleteFile(this)">🗑️</button>
+                `;
+                fileList.appendChild(fileItem);
+            }
+        }
+
+        function deleteFile(button) {
+            const fileItem = button.parentElement;
+            fileItem.remove();
         }
 
         function datamanagerFunktion() {
@@ -131,6 +187,10 @@
 
         function plotmanagerFunktion() {
             alert("Plot-Button wurde geklickt, macht aber noch nichts Spezielles.");
+        }
+
+        function exportmanagerFunktion() {
+            alert("Export-Button wurde geklickt, macht aber noch nichts Spezielles.");
         }
     </script>
 </body>
