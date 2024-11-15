@@ -101,6 +101,23 @@
         .file-item button:hover {
             color: #e04444;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #555;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #5a8ff0;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -124,7 +141,22 @@
             <span>Data Manager</span>
         </div>
         <div id="datamanager" class="toggle-content">
-            <button onclick="datamanagerFunktion()">Data-Button</button>
+            <button onclick="addRow()">Add Row</button>
+            <table id="data-table">
+                <tr>
+                    <th>File x_data</th>
+                    <th>Column x_data</th>
+                    <th>File y_data</th>
+                    <th>Column y_data</th>
+                    <th>visible</th>
+                    <th>Legend Name</th>
+                    <th>Color</th>
+                    <th>Linestyle</th>
+                    <th>Linewidth</th>
+                    <th>Markerstyle</th>
+                    <th>-</th>
+                </tr>
+            </table>
         </div>
     </div>
 
@@ -179,6 +211,15 @@
         function deleteFile(button) {
             const fileItem = button.parentElement;
             fileItem.remove();
+        }
+
+        function addRow() {
+            const table = document.getElementById("data-table");
+            const newRow = table.insertRow();
+            for (let i = 0; i < 11; i++) {
+                const newCell = newRow.insertCell(i);
+                newCell.innerHTML = ""; // Leere Zelle einfügen
+            }
         }
 
         function datamanagerFunktion() {
