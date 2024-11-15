@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dateimanager Webseite</title>
+    <style>
+        /* CSS - Stilregeln */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #f0f0f0;
+            text-align: center;
+            margin: 20px;
+        }
+
+        header {
+            color: white;
+            padding: 15px;
+            text-align: left;
+            width: 100%;
+            font-size: 2em;
+        }
+
+        main {
+            background-color: #444;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            background-color: #5a8ff0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4a7ed0;
+        }
+
+        #dateimanager-container {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        #dateimanager {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .dateimanager-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .dateimanager-header span {
+            margin-left: 10px;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+        }
+
+        .arrow.open {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Dateimanager
+    </header>
+    <div id="dateimanager-container">
+        <div class="dateimanager-header" onclick="toggleDateimanager()">
+            <div class="arrow" id="arrow">▶</div>
+            <span>Dateimanager</span>
+        </div>
+        <div id="dateimanager">
+            <button onclick="dateimanagerFunktion()">Datei-Button</button>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript - Interaktivität hinzufügen
+        function toggleDateimanager() {
+            const dateimanager = document.getElementById("dateimanager");
+            const arrow = document.getElementById("arrow");
+            if (dateimanager.style.display === "none") {
+                dateimanager.style.display = "block";
+                arrow.classList.add("open");
+            } else {
+                dateimanager.style.display = "none";
+                arrow.classList.remove("open");
+            }
+        }
+
+        function dateimanagerFunktion() {
+            alert("Datei-Button wurde geklickt, macht aber noch nichts Spezielles.");
+        }
+    </script>
+</body>
+</html>
